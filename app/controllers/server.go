@@ -2,6 +2,7 @@ package controllers
 
 import "github.com/labstack/echo/v4"
 
+// ルーティング設定・起動
 func ConfigServer() {
 	e := echo.New()
 
