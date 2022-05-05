@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/nao11aihara/echo-api-sample/app/models"
 )
 
 type Product struct {
@@ -50,16 +51,18 @@ func getProduct(c echo.Context) error {
 	return c.JSON(http.StatusOK, product)
 }
 
+// 商品登録
 func postProduct(c echo.Context) error {
-	fmt.Println("商品作成処理")
+  product := Product{}
 
-	product := Product{
-		Id: "1",
-		Title: "商品1",
-		Price: 1000,
-	}
+  err := c.Bind(&product);
+	if err != nil {
+    return err
+  }
 
-	return c.JSON(http.StatusCreated, product)
+  models.Db.Create(&product)
+
+  return c.JSON(http.StatusCreated, product)
 }
 
 func putProduct(c echo.Context) error {
