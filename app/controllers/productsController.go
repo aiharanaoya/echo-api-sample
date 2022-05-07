@@ -51,7 +51,6 @@ func getProduct(c echo.Context) error {
 	return c.JSON(http.StatusOK, product)
 }
 
-// 商品登録
 func postProduct(c echo.Context) error {
   product := Product{}
 
